@@ -2,9 +2,9 @@
 
 set -e
 
-RUBY_VERSION='2.4.*'
-RUBYGEMS_VERSION='2.7.*'
-LIBYAML_VERSION='0.1.*'
+RUBY_VERSION=2.4.5
+RUBYGEMS_VERSION=2.7.8
+LIBYAML_VERSION=0.1.7
 
 openssl_version=$(PATH=/usr/local/opt/openssl/bin:${PATH} openssl version)
 openssl_major_version=$(echo "${openssl_version}" | cut -f2 -d\ | cut -f1 -d.)
@@ -14,10 +14,10 @@ if [ "${openssl_major_version}" == 0 ]; then
   exit 1
 fi
 
-tar xzf yaml-${LIBYAML_VERSION}.tar.gz
+tar xzf "yaml-${LIBYAML_VERSION}.tar.gz"
 (
   set -e
-  cd yaml-${LIBYAML_VERSION}
+  cd "yaml-${LIBYAML_VERSION}"
 
   if [ "$(uname -m)" == "ppc64le" ]; then
     cp "${BOSH_COMPILE_TARGET}"/config/config.{guess,sub} ./tool
@@ -28,10 +28,10 @@ tar xzf yaml-${LIBYAML_VERSION}.tar.gz
   make install
 )
 
-tar xzf ruby-${RUBY_VERSION}.tar.gz
+tar xzf "ruby-${RUBY_VERSION}.tar.gz"
 (
   set -e
-  cd ruby-${RUBY_VERSION}
+  cd "ruby-${RUBY_VERSION}"
 
   if [ "$(uname -m)" == "ppc64le" ]; then
     cp "${BOSH_COMPILE_TARGET}"/config/config.{guess,sub} ./tool
@@ -49,10 +49,10 @@ cp runtime.env "${BOSH_INSTALL_TARGET}/bosh/runtime.env"
 
 source "${BOSH_INSTALL_TARGET}/bosh/runtime.env"
 
-tar zxvf rubygems-${RUBYGEMS_VERSION}.tgz
+tar zxvf "rubygems-${RUBYGEMS_VERSION}.tgz"
 (
   set -e
-  cd rubygems-${RUBYGEMS_VERSION}
+  cd "rubygems-${RUBYGEMS_VERSION}"
 
   if ! ruby setup.rb --no-ri --no-rdoc; then
     echo "Cannot install rubygems"
