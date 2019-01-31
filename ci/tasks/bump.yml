@@ -25,3 +25,4 @@ params:
   RUBY_VERSION: ""
   RUBYGEMS_VERSION: ""
   LIBYAML_VERSION: ""
+  TEST_LIST: ["2.4", "2.5"]

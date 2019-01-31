@@ -5,6 +5,14 @@ set -eux
 : ${RUBY_VERSION:?}
 : ${RUBYGEMS_VERSION:?}
 : ${LIBYAML_VERSION:?}
+: ${TEST_LIST:?}
+
+for v in "${TEST_LIST[@]}"
+do
+  echo "$v"
+done
+
+exit 1
 
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${BASE_DIR}/bump-helpers.sh"
