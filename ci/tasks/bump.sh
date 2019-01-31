@@ -2,12 +2,11 @@
 
 set -eux
 
-RUBY_VERSION=2.4
-RUBYGEMS_VERSION=2.7
-LIBYAML_VERSION=0.1
+: ${RUBY_VERSION:?}
+: ${RUBYGEMS_VERSION:?}
+: ${LIBYAML_VERSION:?}
 
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source ${script_dir}/bump-helpers.sh
 
 cd bumped-ruby-release
 
@@ -17,23 +16,13 @@ set +x
 echo "${PRIVATE_YML}" > config/private.yml
 set -x
 
-git config user.name "CI Bot"
-git config user.email "cf-bosh-eng@pivotal.io"
+set_git_config "CI Bot" "cf-bosh-eng@pivotal.io"
 
 replace_if_necessary "${RUBY_VERSION}" "ruby-2.4"
-
-if [[ "$( git status --porcelain )" != "" ]]; then
-  git commit -am "Bump ruby ${RUBY_VERSION}"
-fi
+commit_if_changed "Bump ruby ${RUBY_VERSION}"
 
 replace_if_necessary "${RUBYGEMS_VERSION}" "rubygems"
-
-if [[ "$( git status --porcelain )" != "" ]]; then
-  git commit -am "Bump rubygems ${RUBYGEMS_VERSION}"
-fi
+commit_if_changed "Bump rubygems ${RUBYGEMS_VERSION}"
 
 replace_if_necessary "${LIBYAML_VERSION}" "yaml"
-
-if [[ "$( git status --porcelain )" != "" ]]; then
-  git commit -am "Bump libyaml ${LIBYAML_VERSION}"
-fi
+commit_if_changed "Bump libyaml ${LIBYAML_VERSION}"
