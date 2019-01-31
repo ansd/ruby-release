@@ -6,24 +6,31 @@ set -eux
 : ${RUBYGEMS_VERSION:?}
 : ${LIBYAML_VERSION:?}
 
-script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source ${script_dir}/bump-helpers.sh
+BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "${BASE_DIR}/bump-helpers.sh"
 
-cd bumped-ruby-release
+function main() {
+  declare -a versions=(
+    "ruby-2.4"
+    "rubygems-2.7"
+    "yaml-0.1"
+  )
 
-git clone ../ruby-release .
+  cd bumped-ruby-release
+  git clone ../ruby-release .
 
-set +x
-echo "${PRIVATE_YML}" > config/private.yml
-set -x
+  set +x
+  echo "${PRIVATE_YML}" > config/private.yml
+  set -x
 
-set_git_config "CI Bot" "cf-bosh-eng@pivotal.io"
+  set_git_config "CI Bot" "cf-bosh-eng@pivotal.io"
 
-replace_if_necessary "${RUBY_VERSION}" "ruby-2.4"
-commit_if_changed "Bump ruby ${RUBY_VERSION}"
+  for v in "${versions[@]}"
+  do
+    replace_if_necessary "$v"
+    commit_if_changed "Bump package $v"
+  done
+}
 
-replace_if_necessary "${RUBYGEMS_VERSION}" "rubygems"
-commit_if_changed "Bump rubygems ${RUBYGEMS_VERSION}"
+main
 
-replace_if_necessary "${LIBYAML_VERSION}" "yaml"
-commit_if_changed "Bump libyaml ${LIBYAML_VERSION}"
