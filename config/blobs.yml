@@ -4,7 +4,7 @@ ruby-2.4.5.tar.gz:
   sha: sha256:6737741ae6ffa61174c8a3dcdd8ba92bc38827827ab1d7ea1ec78bc3cefc5198
 rubygems-2.7.8.tgz:
   size: 920781
-  object_id: adc0adbd-1d3d-4f70-47c2-bb202c99093a
+  object_id: 845691d9-5453-4a6f-7cfa-79771306661e
   sha: sha256:f0d04b15a2dcf16c30895839366b0f0735651ade6cdaa424b15c0fe77e2fdf58
 yaml-0.1.7.tar.gz:
   size: 527518
