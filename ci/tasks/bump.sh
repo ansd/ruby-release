@@ -9,8 +9,10 @@ set -euxo pipefail
 function replace_if_necessary() {
   package_name=$1
   blobname=$2
-  if ! bosh blobs | grep -q "${blobname}"; then
-    bosh blobs
+  bosh blobs
+  bosh blobs | grep "${blobname}"
+
+  if ! $?; then
     existing_blob=$(bosh blobs | awk '{print $1}' | grep "${package_name}" || true)
     if [ -n "${existing_blob}" ]; then
       bosh remove-blob "${existing_blob}"
