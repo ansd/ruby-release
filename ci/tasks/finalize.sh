@@ -13,8 +13,8 @@ pushd finalized-release
   git status
   commits=$(git log --oneline origin/ci..HEAD | wc -l)
   if [[ "$commits" == "0" ]]; then
-    :> version-tag/tag-name #prevent git-resource to tag HEAD
-    cp semver/version bumped-semver/version
+    :> ../version-tag/tag-name #prevent git-resource to tag HEAD
+    cp ../semver/version ../bumped-semver/version
     exit 0
   fi
 
