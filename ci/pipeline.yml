@@ -26,7 +26,6 @@ jobs:
       trigger: true
     - get: bosh-src
     - get: ruby-release
-      trigger: true
     - get: stemcell
     - get: semver
   - task: bump
