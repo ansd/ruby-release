@@ -11,6 +11,8 @@ builds:
     version: 7.7.15
   6c9eba79-43fb-446a-594d-672c43d37147:
     version: 0.0.4
+  77d25016-79f6-4858-7fbd-8dbc3159d053:
+    version: 7.7.17
   8368718f-9a90-4b2d-5e8a-d8b1f8ccfafa:
     version: 0.1.1
   83dcdd78-de8c-474b-72d5-5139a4ccfbc8:
