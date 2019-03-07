@@ -2,7 +2,7 @@
 
 set -eux
 
-ASSERT_GEM_VERSION=2.7.8
+ASSERT_GEM_VERSION=2.7.9
 
 echo "Testing runtime compability"
 

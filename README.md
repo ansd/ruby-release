@@ -15,7 +15,7 @@ Included packages:
 - ruby-2.4.5 which includes:
   - ruby-2.4.5
   - yaml-0.1.7
-  - rubygems-2.7.8
+  - rubygems-2.7.9
 
 Included functions in `compile.env`:
 
