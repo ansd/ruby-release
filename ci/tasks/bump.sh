@@ -9,7 +9,7 @@ set -euxo pipefail
 function replace_if_necessary() {
   package_name=$1
   blobname=$2
-  bosh blobs | grep "${blobname}" || true
+  bosh blobs | grep "${blobname}"
 
   if [ $? -eq 0 ]; then
     echo "Blob $blobname already exists. Nothing to do."
@@ -46,7 +46,6 @@ replace_if_necessary "rubygems-$RUBYGEMS_VERSION" "$rubygems_blob"
 replace_if_necessary "yaml-$LIBYAML_VERSION" "$yaml_blob"
 
 echo "-----> $(date): Rendering package and job templates"
-
 
 git rm -r packages/*
 git rm -r jobs/*
