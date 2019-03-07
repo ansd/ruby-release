@@ -12,4 +12,4 @@ inputs:
 - name: stemcell
 
 run:
-  path: ruby-release/ci/tasks/test-bumped.sh
+  path: bumped-ruby-release/ci/tasks/test-bumped.sh
