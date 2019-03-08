@@ -42,6 +42,7 @@ test_packagename="ruby-$RUBY_VERSION-test"
 
 echo "-----> $(date): Updating blobs"
 
+bosh blobs
 replace_if_necessary "ruby-$RUBY_VERSION" "$ruby_blob"
 replace_if_necessary "rubygems-$RUBYGEMS_VERSION" "$rubygems_blob"
 replace_if_necessary "yaml-$LIBYAML_VERSION" "$yaml_blob"
